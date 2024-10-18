@@ -1,0 +1,14 @@
+1. khởi tạo dự án nestjs
+npm i -g @nestjs/cli - đối mới Mac lỗi thì sử dụng sudo chown -R $(whoami) $(npm config get prefix)/{lib/node_modules,bin,share}
+npm i -g @nestjs/cli
+
+tạo dự án mới 
+nest new task1
+2.Tạo module 
+nest generate module name 
+3.Tạo controller 
+nest generate controller name 
+4.Tạo service
+nest generate service name 
+
+

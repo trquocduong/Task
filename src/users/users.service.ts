@@ -8,15 +8,17 @@ export interface User {
 @Injectable()
 export class UsersService {
   private users: User[] = [];
-  private idCounter = 0;
 
-  createUser(name: string): User {
-    const newUser = { id: ++this.idCounter, name };
+  createUser(name: string): string {
+    const newUser: User = { id: this.users.length + 1, name };
     this.users.push(newUser);
-    return newUser;
+    return newUser.id.toString(); // trả về dạng chuổi
   }
 
   getAllUsers(): User[] {
     return this.users;
+  }
+  getUserById(id: string): User | null {
+    return this.users.find((user) => user.id.toString() === id) || null;
   }
 }
