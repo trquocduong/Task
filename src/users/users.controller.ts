@@ -2,17 +2,32 @@ import { Controller, Get, Post, Body, Param } from '@nestjs/common';
 import { UsersService, User } from './users.service';
 import { ResponsData } from 'src/global/globalClass';
 import { Message, Status } from 'src/global/globalEnum';
+import { UserDto } from 'src/dto/user.dto';
 
 @Controller()
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
+  // @Post('register')
+  // registerUser(@Body('name') name: string): ResponsData<string> {
+  //   try {
+  //     const userId = this.usersService.createUser(name);
+  //     return new ResponsData<string>(userId, Status.SUCCESS, Message.SUCCESS);
+  //   } catch (error) {
+  //     return new ResponsData<string>(null, Status.ERROR, Message.ERROR);
+  //   }
+  // }
+
+  //data transfer object
   @Post('register')
-  registerUser(@Body('name') name: string): ResponsData<string> {
+  registerUser(@Body() usersDto: UserDto): ResponsData<UserDto> {
     try {
-      const userId = this.usersService.createUser(name);
-      return new ResponsData<string>(userId, Status.SUCCESS, Message.SUCCESS);
+      return new ResponsData<UserDto>(
+        usersDto,
+        Status.SUCCESS,
+        Message.SUCCESS,
+      );
     } catch (error) {
-      return new ResponsData<string>(null, Status.ERROR, Message.ERROR);
+      return new ResponsData<UserDto>(null, Status.ERROR, Message.ERROR);
     }
   }
 
